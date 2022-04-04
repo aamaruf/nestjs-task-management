@@ -17,8 +17,24 @@ export class TaskService {
     return this.tasks;
   }
 
-  getTasksWithFilter(@Query() filters: GetTaskFilterDTO) {
-    //
+  getTasksWithFilter(@Query() filters: GetTaskFilterDTO): Task[] {
+    const { status, searchTerm } = filters;
+    let tasks = this.getAllTask();
+    if (status) {
+      tasks = tasks.filter((task) => task.status === status);
+    }
+    if (searchTerm) {
+      tasks = tasks.filter((task) => {
+        if (
+          task.title.includes(searchTerm) ||
+          task.description.includes(searchTerm)
+        ) {
+          return true;
+        }
+        return false;
+      });
+    }
+    return tasks;
   }
 
   createTask(data: CreateTaskDTO): Task {
