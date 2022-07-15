@@ -3,6 +3,7 @@ import { v4 as uuidV4 } from 'uuid';
 import { CreateTaskDTO } from './dto/createTask.dto';
 import { GetTaskFilterDTO } from './dto/getTaskFilter.dto';
 import { UpdateTaskDTO } from './dto/updateTask.dto';
+import { UpdateTaskStatusDTO } from './dto/updateTaskStatus.dto';
 import { Task, taskStatus } from './task.model';
 
 @Injectable()
@@ -59,9 +60,9 @@ export class TaskService {
     this.tasks = this.tasks.filter((task) => task.id !== id);
   }
 
-  updateTaskStatus(id: string, status: taskStatus) {
+  updateTaskStatus(id: string, statusData: UpdateTaskStatusDTO) {
     const task = this.getTaskById(id);
-    task.status = status;
+    task.status = statusData.status;
     return task;
   }
 }
