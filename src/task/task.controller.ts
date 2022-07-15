@@ -9,6 +9,7 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
+import { CreateTaskDTO } from './dto/createTask.dto';
 import { GetTaskFilterDTO } from './dto/getTaskFilter.dto';
 import { UpdateTaskDTO } from './dto/updateTask.dto';
 import { Task, taskStatus } from './task.model';
@@ -40,7 +41,7 @@ export class TaskController {
   }
 
   @Post()
-  createTask(@Body() body) {
+  createTask(@Body() body: CreateTaskDTO) {
     return this.taskService.createTask(body);
   }
 
