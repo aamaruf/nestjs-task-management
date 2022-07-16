@@ -28,4 +28,20 @@ export class TaskService {
   async createTask(data) {
     return await this.taskRepo.save(data);
   }
+
+  async updateTask(id: string, data) {
+    const task = await this.getTaskById(id);
+
+    if (task) {
+      return await this.taskRepo.update(id,data);
+    }
+  }
+
+  async deleteTaskById(id: string) {
+    const task = await this.getTaskById(id);
+
+    if (task) {
+      return await this.taskRepo.softDelete(id);
+    }
+  }
 }
