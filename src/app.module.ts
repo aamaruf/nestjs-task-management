@@ -4,8 +4,7 @@ import { TaskModule } from './task/task.module';
 
 @Module({
   imports: [
-    TaskModule,
-    TypeOrmModule,
+    // TypeOrmModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -15,7 +14,9 @@ import { TaskModule } from './task/task.module';
       database: 'nestjs-task-management-db',
       autoLoadEntities: true,
       synchronize: true,
+      logging: true,
     }),
+    TaskModule,
   ],
 })
 export class AppModule {}

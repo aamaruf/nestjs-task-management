@@ -1,16 +1,17 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { taskStatus } from '../task.enum';
 
 @Entity()
 export class Task {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id?: string;
 
   @Column()
-  title: string;
+  title?: string;
 
   @Column()
-  description: string;
+  description?: string;
 
-  @Column()
-  status: string;
+  @Column({ default: taskStatus.Pending })
+  status?: string;
 }
